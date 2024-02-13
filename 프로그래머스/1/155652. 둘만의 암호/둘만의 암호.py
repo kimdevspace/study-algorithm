@@ -1,9 +1,9 @@
 def solution(s, skip, index):
     answer = ''
     alpha='abcdefghijklmnopqrstuvwxyz'
-    for i in alpha:
-        if i in skip:
-            alpha=alpha.replace(i,'')
+    for a in alpha:
+        if a in skip:
+            alpha=alpha.replace(a,'')
     for i in s:
         res=alpha[(alpha.index(i)+index)%len(alpha)]
         answer+=res
