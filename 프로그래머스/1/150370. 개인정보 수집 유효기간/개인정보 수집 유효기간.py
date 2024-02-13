@@ -2,6 +2,7 @@ def solution(today, terms, privacies):
     answer = []
     dic={}
     today_list=list(map(int,today.split('.')))
+    print(today_list)
     for term in terms:
         t,p=term.split()
         dic[t]=int(p)*28
@@ -12,6 +13,6 @@ def solution(today, terms, privacies):
         month=(today_list[1]-date_list[1])*28
         day=today_list[2]-date_list[2]
         total=year+month+day
-        if dic[s]<=total:
+        if total>=dic[s]:
             answer.append(i+1)
     return answer
