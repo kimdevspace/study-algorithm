@@ -7,7 +7,7 @@ def solution(board, moves):
                 basket.append(b[m-1])
                 b[m-1]=0
                 break
-        if len(basket)>=2 and basket[-1]==basket[-2]:
+        if len(basket)>=2 and basket[-2]==basket[-1]:
             answer+=2
             basket=basket[:-2]
     return answer
