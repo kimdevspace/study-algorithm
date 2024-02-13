@@ -1,18 +1,18 @@
 def solution(keymap, targets):
     answer = []
-    d={}
+    dic={}
     for i in range(len(keymap)):
         for j in range(len(keymap[i])):
             char=keymap[i][j]
-            if char not in d:
-                d[char]=j+1
+            if char not in dic:
+                dic[char]=j+1
             else:
-                d[char]=min(d[char],j+1)
+                dic[char]=min(dic[char],j+1)
     for target in targets:
         sum=0
         for t in target:
-            if t in d:
-                sum+=d[t]
+            if t in dic:
+                sum+=dic[t]
             else:
                 sum=-1
                 break
