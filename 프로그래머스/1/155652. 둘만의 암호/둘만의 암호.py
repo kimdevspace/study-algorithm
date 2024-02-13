@@ -1,10 +1,10 @@
 def solution(s, skip, index):
     answer = ''
-    al='abcdefghijklmnopqrstuvwxyz'
-    for i in al:
+    alpha='abcdefghijklmnopqrstuvwxyz'
+    for i in alpha:
         if i in skip:
-            al=al.replace(i,'')
+            alpha=alpha.replace(i,'')
     for i in s:
-        res=al[(al.index(i)+index)%len(al)]
+        res=alpha[(alpha.index(i)+index)%len(alpha)]
         answer+=res
     return answer
