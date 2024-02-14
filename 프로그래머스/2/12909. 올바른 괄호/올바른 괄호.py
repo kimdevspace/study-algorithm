@@ -1,10 +1,11 @@
 def solution(s):
     stack=[]
     for i in s:
-        if i=='(':
+        if i=="(":
             stack.append(i)
-        elif i==')' and len(stack)==0:
-            stack.append(i)
-        elif i==')' and len(stack)>0:
-            stack.pop()
-    return True if len(stack)==0 else False
+        elif i==")":
+            try:
+                stack.pop()
+            except IndexError:
+                return False
+    return len(stack)==0
