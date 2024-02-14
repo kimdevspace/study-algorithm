@@ -8,6 +8,7 @@ def solution(keymap, targets):
                 dic[char]=j+1
             else:
                 dic[char]=min(dic[char],j+1)
+    print(dic)
     for target in targets:
         sum=0
         for t in target:
