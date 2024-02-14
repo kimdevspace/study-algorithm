@@ -8,4 +8,3 @@ def solution(elements):
             dp[j]=dp[j]+elements[i+j-1]
             answer.add(dp[j])
     return len(answer)+1
-    
