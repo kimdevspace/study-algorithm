@@ -1,7 +1,6 @@
 def solution(citations):
     answer = 0
-    citations=sorted(citations,reverse=True)
-    for idx, cit in enumerate(citations):
+    for idx, cit in enumerate(sorted(citations,reverse=True)):
         if idx+1<=cit:
             answer+=1
     return answer
