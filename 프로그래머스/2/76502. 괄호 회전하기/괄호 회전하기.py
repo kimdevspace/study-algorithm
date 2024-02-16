@@ -1,21 +1,21 @@
 def solution(s):
-    answer=0
     n=len(s)
     dp=s
     s=list(2*s)
+    answer=0
     for i in range(n):
-        dp=s[i:n+i]
         stack=[]
+        dp=s[i:n+i]
         for j in dp:
-            if j=='{' or j=='(' or j=='[':
+            if j=='(' or j=='{' or j=='[':
                 stack.append(j)
             else:
                 if stack:
-                    if stack[-1]=='[' and j==']':
+                    if stack[-1]=='(' and j==')':
+                        stack.pop()
+                    elif stack[-1]=='[' and j==']':
                         stack.pop()
                     elif stack[-1]=='{' and j=='}':
-                        stack.pop()
-                    elif stack[-1]=='(' and j==')':
                         stack.pop()
         if len(stack)==0:
             answer+=1
