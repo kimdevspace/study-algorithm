@@ -1,8 +1,9 @@
 def solution(clothes):
+    answer = 0
     dic={}
     for n,t in clothes:
         if t in dic:
-            dic[t]+=[n]  
+            dic[t]+=[n]
         else:
             dic[t]=[n]
     count=1
