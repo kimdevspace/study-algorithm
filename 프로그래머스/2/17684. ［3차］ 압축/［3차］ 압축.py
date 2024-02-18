@@ -1,8 +1,8 @@
 def solution(msg):
     answer = []
-    dic={chr(i):i-64 for i in range(65,91)}
-    idx=27
+    dic={chr(i+64):i for i in range(1,27)}
     start,end=0,1
+    idx=27
     while end<len(msg)+1:
         w=msg[start:end]
         if w in dic:
