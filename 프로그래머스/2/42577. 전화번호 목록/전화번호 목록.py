@@ -1,9 +1,9 @@
 def solution(phone_book):
-    dic={i:1 for i in phone_book}
-    for num in phone_book:
+    call={i:1 for i in phone_book}
+    for phone in phone_book:
         ans=''
-        for n in num:
-            ans+=n
-            if ans in dic and ans!=num:
+        for p in phone:
+            ans+=p
+            if ans in call and ans!=phone:
                 return False
     return True
