@@ -1,10 +1,9 @@
-from collections import deque
 def solution(priorities, location):
     answer = []
-    que=deque((i,j) for i,j in enumerate(priorities))
+    que=[(i,p) for i,p in enumerate(priorities)]
     while que:
-        process=que.popleft()
-        if que and any(process[1]<q[1] for q in que):
+        process=que.pop(0)
+        if process and any(process[1]<q[1] for q in que):
             que.append(process)
         else:
             answer.append(process)
