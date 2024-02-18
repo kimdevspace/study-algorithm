@@ -6,5 +6,4 @@ def solution(str1, str2):
     union=list((c1|c2).elements())
     if len(inter)==0 and len(union)==0:
         return 65536
-    else:
-        return int(len(inter)/len(union)*65536)
+    return int(len(inter)/len(union)*65536)
