@@ -12,5 +12,5 @@ def solution(progresses, speeds):
                 answer.append(c)
                 c=0
             d+=1
-    answer.append(c)            
+    answer.append(c)
     return answer
