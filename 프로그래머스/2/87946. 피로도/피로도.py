@@ -1,4 +1,3 @@
-#순열을 이용하여 푼다.
 from itertools import permutations
 def solution(k, dungeons):
     answer = 0
