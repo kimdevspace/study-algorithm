@@ -1,5 +1,5 @@
 def solution(phone_book):
-    dic={p:1 for p in phone_book}
+    dic={i:1 for i in phone_book}
     for num in phone_book:
         ans=''
         for n in num:
