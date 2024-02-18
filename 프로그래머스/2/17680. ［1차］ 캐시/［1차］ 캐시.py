@@ -6,7 +6,7 @@ def solution(cacheSize, cities):
         return len(cities)*5
     else:
         for city in cities:
-            city=city.upper()
+            city=city.lower()
             if city in deq:
                 answer+=1
             else:
