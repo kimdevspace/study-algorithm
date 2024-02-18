@@ -1,5 +1,4 @@
 def solution(clothes):
-    answer = 0
     dic={}
     for n,t in clothes:
         if t in dic:
