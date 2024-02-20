@@ -1,10 +1,10 @@
 def solution(n, k):
+    answer=0
     word=''
     while n:
         word=str(n%k)+word
         n//=k
     word=word.split('0')
-    cnt=0
     for w in word:
         if len(w)==0 or int(w)<2:
             continue
@@ -14,5 +14,5 @@ def solution(n, k):
                 sosu=False
                 break
         if sosu:
-            cnt+=1
-    return cnt
+            answer+=1
+    return answer
