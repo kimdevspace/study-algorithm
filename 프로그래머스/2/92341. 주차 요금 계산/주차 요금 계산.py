@@ -1,5 +1,5 @@
 from math import ceil
-def htom(time):
+def h2m(time):
     h,m=map(int,time.split(':'))
     return h*60+m
 def solution(fees, records):
@@ -9,11 +9,11 @@ def solution(fees, records):
     for r in records:
         time,num,io=r.split()
         if io=='IN':
-            parking[num]=htom(time)
+            parking[num]=h2m(time)
             if num not in res:
                 res[num]=0
         else:
-            res[num]+=htom(time)-parking[num]
+            res[num]+=h2m(time)-parking[num]
             del parking[num]
     for k,v in parking.items():
         res[k]+=23*60+59-v
