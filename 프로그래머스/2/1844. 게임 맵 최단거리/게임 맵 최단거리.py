@@ -15,7 +15,4 @@ def solution(maps):
             if 0<=nx<n and 0<=ny<m and maps[nx][ny]==1:
                 maps[nx][ny]=maps[x][y]+1
                 que.append((nx,ny))
-    answer=maps[n-1][m-1]
-    if answer==1:
-        answer=-1
-    return answer
+    return -1 if maps[n-1][m-1]==1 else maps[n-1][m-1]
