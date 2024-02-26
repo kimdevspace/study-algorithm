@@ -1,21 +1,21 @@
 from math import ceil
-def h2m(time):
+def htom(time):
     h,m=map(int,time.split(':'))
     return h*60+m
 def solution(fees, records):
     answer = []
-    parking={}
+    par={}
     res={}
     for r in records:
         time,num,io=r.split()
         if io=='IN':
-            parking[num]=h2m(time)
+            par[num]=htom(time)
             if num not in res:
                 res[num]=0
         else:
-            res[num]+=h2m(time)-parking[num]
-            del parking[num]
-    for k,v in parking.items():
+            res[num]+=htom(time)-par[num]
+            del par[num]
+    for k,v in par.items():
         res[k]+=23*60+59-v
     for k,v in sorted(res.items()):
         if v<=fees[0]:
