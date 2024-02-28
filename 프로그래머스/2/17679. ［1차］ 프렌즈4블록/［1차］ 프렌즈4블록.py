@@ -10,8 +10,8 @@ def solution(m, n, board):
                     continue
                 elif t==board[i+1][j] and t==board[i][j+1] and t==board[i+1][j+1]:
                     tmp.add((i,j))
-                    tmp.add((i,j+1))
                     tmp.add((i+1,j))
+                    tmp.add((i,j+1))
                     tmp.add((i+1,j+1))
         if tmp:
             answer+=len(tmp)
