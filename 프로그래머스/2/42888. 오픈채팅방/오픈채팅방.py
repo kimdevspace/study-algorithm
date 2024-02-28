@@ -3,9 +3,8 @@ def solution(record):
     dic={}
     for r in record:
         word=r.split()
-        if word[0]=='Leave':
-            continue
-        dic[word[1]]=word[2]
+        if word[0] in ['Enter','Change']:
+            dic[word[1]]=word[2]
     for r in record:
         word=r.split()
         if word[0]=='Enter':
