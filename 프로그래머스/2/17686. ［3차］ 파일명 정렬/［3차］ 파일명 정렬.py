@@ -14,4 +14,4 @@ def solution(files):
                 answer.append([head,number,tail])
                 break
     answer=sorted(answer,key=lambda x:(x[0].upper(),int(x[1])))
-    return [''.join(a) for a in answer]
+    return [''.join(i) for i in answer]
