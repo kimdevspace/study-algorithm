@@ -13,5 +13,5 @@ def solution(files):
                         break
                 answer.append([head,number,tail])
                 break
-    answer=sorted(answer,key=lambda x:(x[0].upper(),int(x[1])))
+    answer=sorted(answer,key=lambda x:(x[0].lower(),int(x[1])))
     return [''.join(i) for i in answer]
