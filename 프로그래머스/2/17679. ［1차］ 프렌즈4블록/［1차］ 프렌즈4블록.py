@@ -1,7 +1,7 @@
 def solution(m, n, board):
     answer = 0
-    board=[list(b) for b in board]
     tmp=set()
+    board=[list(b) for b in board]
     while True:
         for i in range(m-1):
             for j in range(n-1):
