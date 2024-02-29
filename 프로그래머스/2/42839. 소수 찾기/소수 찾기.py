@@ -6,9 +6,9 @@ def prime(n):
     return True
 def solution(numbers):
     sosu=[]
-    num=[''.join(i) for i in numbers]
-    for i in range(1,len(num)+1):
-        for n in permutations(num,i):
+    #num=[''.join(i) for i in numbers]
+    for i in range(1,len(numbers)+1):
+        for n in permutations(numbers,i):
             disc=int(''.join(list(n)))
             if disc>=2 and prime(disc):
                 sosu.append(disc)
