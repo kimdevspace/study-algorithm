@@ -10,7 +10,6 @@ def solution(numbers):
     for i in range(1,len(num)+1):
         for n in permutations(num,i):
             disc=int(''.join(list(n)))
-            if disc>=2:
-                if prime(disc):
-                    sosu.append(disc)
+            if disc>=2 and prime(disc):
+                sosu.append(disc)
     return len(set(sosu))
