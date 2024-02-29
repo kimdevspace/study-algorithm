@@ -3,7 +3,7 @@ def solution(record):
     dic={}
     for r in record:
         word=r.split()
-        if word[0] in 'Leave':
+        if word[0]=='Leave':
             continue
         dic[word[1]]=word[2]
     for r in record:
