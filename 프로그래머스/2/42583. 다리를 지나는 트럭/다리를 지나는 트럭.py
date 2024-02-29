@@ -1,9 +1,9 @@
 from collections import deque
 def solution(bridge_length, weight, truck_weights):
-    answer = 0
+    answer=0
     cw=0
-    tw=deque(truck_weights)
     b=deque([0]*bridge_length)
+    tw=deque(truck_weights)
     while len(tw)>0:
         answer+=1
         cw-=b.popleft()
