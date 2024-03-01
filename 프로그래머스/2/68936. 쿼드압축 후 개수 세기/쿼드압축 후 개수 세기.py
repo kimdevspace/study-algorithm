@@ -5,11 +5,11 @@ def solution(arr):
         start=arr[a][b]
         for i in range(a,a+n):
             for j in range(b,b+n):
-                if arr[i][j]!=start:
+                if start!=arr[i][j]:
                     n//=2
                     comp(a,b,n)
-                    comp(a,b+n,n)
                     comp(a+n,b,n)
+                    comp(a,b+n,n)
                     comp(a+n,b+n,n)
                     return
         answer[start]+=1
