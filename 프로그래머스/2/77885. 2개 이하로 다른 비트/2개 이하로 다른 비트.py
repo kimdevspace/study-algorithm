@@ -1,10 +1,10 @@
 def solution(numbers):
     answer = []
-    for num in numbers:
-        if num%2==1:
-            number='0'+bin(num)[2:]
-            number=number[:number.rindex('0')]+'10'+number[number.rindex('0')+2:]
-            answer.append(int(number,2))
+    for number in numbers:
+        if number%2==0:
+            answer.append(number+1)
         else:
-            answer.append(num+1)
+            num='0'+bin(number)[2:]
+            num=num[:num.rindex('0')]+'10'+num[num.rindex('0')+2:]
+            answer.append(int(num,2))
     return answer
