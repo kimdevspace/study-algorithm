@@ -1,11 +1,13 @@
+import sys
+input=sys.stdin.readline
 n,m=map(int,input().split())
-h,l=set(),set()
+h=set()
 for _ in range(n):
-    h.add(input())
+    h.add(input().rstrip())
+l=set()
 for _ in range(m):
-    l.add(input())
-hl=h&l
+    l.add(input().rstrip())
+hl=sorted(list(h&l))
 print(len(hl))
-hl=sorted(list(hl))
-for i in range(len(hl)):
-    print(hl[i])
+for i in hl:
+    print(i)
