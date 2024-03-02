@@ -1,16 +1,15 @@
-from sys import stdin
-def input():
-    return stdin.readline().rstrip()
+import sys
+input=sys.stdin.readline
 n,m=map(int,input().split())
 id={}
 name={}
 for i in range(1,n+1):
-    p=input()
-    id[i]=p
-    name[p]=i
+    pok=input().strip()
+    id[i]=pok
+    name[pok]=i
 for _ in range(m):
-    x=input()
-    if x.isdigit():
-        print(id[int(x)])
+    find=input().strip()
+    if find.isdigit():
+        print(id[int(find)])
     else:
-        print(name[x])
+        print(name[find])
