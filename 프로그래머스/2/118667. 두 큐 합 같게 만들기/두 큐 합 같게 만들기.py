@@ -1,6 +1,6 @@
 from collections import deque
 def solution(queue1, queue2):
-    answer=0
+    answer = 0
     q1,q2=deque(queue1),deque(queue2)
     sum1,sum2=sum(q1),sum(q2)
     limit=len(q1)*3
