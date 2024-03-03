@@ -3,7 +3,7 @@ stack=[]
 cnt=0
 for i in range(len(bar)):
     if bar[i]=='(':
-        stack.append(bar[i])
+        stack.append('(')
     else:
         if bar[i-1]=='(':
             stack.pop()
