@@ -1,19 +1,25 @@
-import sys
-input=sys.stdin.readline
-def dfs(x):
-    global ans
-    if x==n:
-        ans+=1 #n행까지 진행했을 경우 경우의수 추가!
+N = int(input())
+
+cnt = 0
+
+bd = [False]*N          # idx는 j
+diag1 = [False]*(2*N)   # idx는 i+j
+diag2 = [False]*(2*N)   # idx는 i-j
+
+# 다음 i번째 퀸을 j에 놓을 수 있는지 확인하는 함수.
+def f(i):
+    # 끝에 도달하면 종료
+    if i == N:
+        # print(bd)
+        global cnt; cnt +=1
         return
-    for j in range(n):
-        if v1[j]==v2[x+j]==v3[x-j]==0: #열, 대각선 모두 방문하지 않은 경우
-            v1[j]=v2[x+j]=v3[x-j]=1 #방문처리 해준 후
-            dfs(x+1) #다음 행으로
-            v1[j]=v2[x+j]=v3[x-j]=0 #방문처리 해제 why? 다음 dfs를 진행하기 위해
-n=int(input())
-ans=0
-v1=[0]*n
-v2=[0]*(2*n)
-v3=[0]*(2*n)
-dfs(0)
-print(ans)
+    # 1. j값이 앞에랑 걸리는게 있는지?
+    # 2. 대각선에 걸리는게 있는지?
+    for j in range(N):
+        if not (bd[j] or diag1[i+j] or diag2[i-j]) :
+            bd[j] = diag1[i+j] = diag2[i-j] = True
+            f(i+1)
+            bd[j] = diag1[i+j] = diag2[i-j] = False
+        
+f(0)
+print(cnt)
