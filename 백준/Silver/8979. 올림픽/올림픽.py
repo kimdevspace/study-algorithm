@@ -1,12 +1,8 @@
-dic={}
 n,k=map(int,input().split())
-for _ in range(n):
-    c,g,s,b=map(int,input().split())
-    if c not in dic:
-        dic[c]=[g,s,b]
-arr=sorted(dic.keys(),key=lambda x:(dic[x][0],dic[x][1],dic[x][2]),reverse=True)
-idx=arr.index(k)
-for i in range(1,n):
-    if dic[idx]==dic[i]:
-        print(i)
+medals=[list(map(int,input().split())) for _ in range(n)]
+medals.sort(key=lambda x:(x[1],x[2],x[3]),reverse=True)
+idx=[medals[i][0] for i in range(n)].index(k)
+for i in range(n):
+    if medals[idx][1:]==medals[i][1:]:
+        print(i+1)
         break
