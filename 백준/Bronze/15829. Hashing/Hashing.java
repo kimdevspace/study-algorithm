@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -11,11 +10,14 @@ public class Main {
         for (int i = 0; i < N; i++) {
             arr[i] = str.charAt(i) - 96;
         }
+        int M = 1234567891;
+        long pow = 1;
+        long sum = 0;
 
-        int H = 0;
         for (int i = 0; i < N; i++) {
-            H += arr[i] * Math.pow(31, i);
+            sum += (arr[i] * pow) % M;
+            pow = 31 * pow % M;
         }
-        System.out.println(H);
+        System.out.println(sum % M);
     }
 }
