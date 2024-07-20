@@ -1,28 +1,29 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    private static int[] arr;
-    private static boolean[] visit;
-    private static StringBuilder sb = new StringBuilder();
-
+    static boolean[] visit;
+    static int[] arr;
+    static int N;
+    static int M;
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
 
-        arr = new int[M];
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
         visit = new boolean[N];
-        dfs(N, M, 0);
-        bw.write(sb + "");
+        arr = new int[M];
+        permutation(0);
+        System.out.println(sb);
         br.close();
-        bw.flush();
-        bw.close();
-    }
 
-    public static void dfs(int N, int M, int depth) {
+    }
+    public static void permutation(int depth) {
         if (depth == M) {
             for (int val : arr) {
                 sb.append(val).append(' ');
@@ -35,7 +36,7 @@ public class Main {
             if (!visit[i]) {
                 visit[i] = true;
                 arr[depth] = i + 1;
-                dfs(N, M, depth + 1);
+                permutation(depth + 1);
                 visit[i] = false;
             }
         }
