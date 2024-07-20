@@ -5,7 +5,6 @@ import java.util.StringTokenizer;
 
 public class Main {
     static int[] arr;
-    static int[] visit;
     static int N;
     static int M;
     static StringBuilder sb = new StringBuilder();
@@ -16,11 +15,8 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         arr = new int[M];
-        visit = new int[N];
-
         product(0);
         System.out.println(sb);
-
     }
     public static void product(int depth) {
         if (depth == M) {
