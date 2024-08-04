@@ -17,13 +17,15 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
         graph = new int[N][N];
+        int t_max = 0;
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
                 graph[i][j] = Integer.parseInt(st.nextToken());
+                t_max = Math.max(t_max, graph[i][j]);
             }
         }
-        for (int t = 0; t < 100; t++) {
+        for (int t = 0; t < t_max; t++) {
             visit = new boolean[N][N];
             int cnt = 0;
             for (int i = 0; i < N; i++) {
