@@ -22,10 +22,10 @@ public class Main {
 
 
         adjList = new ArrayList<>();
-        adjList.add(new ArrayList<Integer>());
+        adjList.add(new ArrayList<>());
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
-            adjList.add(new ArrayList<Integer>());
+            adjList.add(new ArrayList<>());
             int areaCnt = Integer.parseInt(st.nextToken());
             for (int j = 0; j < areaCnt; j++) {
                 int element = Integer.parseInt(st.nextToken());
