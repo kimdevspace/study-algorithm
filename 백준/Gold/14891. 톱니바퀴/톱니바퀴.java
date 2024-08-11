@@ -6,7 +6,7 @@ public class Main {
     static int ans;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        
 
         for (int i = 0; i < 4; i++) {
             String str = br.readLine();
@@ -29,33 +29,36 @@ public class Main {
                 ans += Math.pow(2, i);
             }
         }
-        bw.write(ans + "");
-        br.close();
-        bw.flush();
-        bw.close();
+        System.out.println(ans);
     }
+    
+    //처음 회전한 톱니바퀴의 왼쪽에 있는 톱니바퀴들 검사
     public static void chkLeftWheel(int num, int direction) {
-        if (num < 0 || wheels[num][2] == wheels[num + 1][6]) {
+        if (num < 0 || wheels[num][2] == wheels[num + 1][6]) {  // 톱니바퀴 개수의 범위 밖이거나 맞닿아있는 극이 같다면 리턴
             return;
         }
-        chkLeftWheel(num - 1, -direction);
-        rotate(num, direction);
+        chkLeftWheel(num - 1, -direction); // 재귀로 방향만 바꿔서 검사!
+        rotate(num, direction); // 톱니바퀴 개수 범위 안임과 동시에 맞닿아 있는 극이 다르다면 회전!
     }
+    
+    //처음 회전한 톱니바퀴의 오른쪽에 있는 톱니바퀴들 검사
     public static void chkRightWheel(int num, int direction) {
-        if (num > 3 || wheels[num][6] == wheels[num - 1][2]) {
+        if (num > 3 || wheels[num][6] == wheels[num - 1][2]) { // 톱니바쿠 개수의 범위 밖이거나 맞닿아있는 극이 같다면 리턴
             return;
         }
-        chkRightWheel(num + 1, -direction);
-        rotate(num, direction);
+        chkRightWheel(num + 1, -direction); // 재귀로 방향만 바꿔서 검사!
+        rotate(num, direction); //톱니바퀴 개수 범위 안임과 동시에 맞닿아 있는 극이 다르다면 회전!
     }
+    
+    //배열 회전하는 메서드
     public static void rotate(int num, int direction) {
-        if (direction == 1) {
+        if (direction == 1) { //시계방향
             int temp = wheels[num][7];
             for (int i = 7; i > 0; i--) {
                 wheels[num][i] = wheels[num][i - 1];
             }
             wheels[num][0] = temp;
-        }else {
+        }else {  //반시계 방향
             int temp = wheels[num][0];
             for (int i = 0; i < 7; i++) {
                 wheels[num][i] = wheels[num][i + 1];
