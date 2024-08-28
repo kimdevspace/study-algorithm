@@ -26,6 +26,7 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
         T = Integer.parseInt(br.readLine());
@@ -49,9 +50,9 @@ public class Solution {
             }
 
             permutation(0);
-            System.out.println("#" + tc + " " + ans);
-
+            sb.append("#").append(tc).append(" ").append(ans).append("\n");
         }
+        System.out.println(sb);
 
     }
 
@@ -75,6 +76,9 @@ public class Solution {
             ans = Math.min(ans, blockCnt());
             copyMap();
             return;
+        }
+        if (ans == 0) {
+        	return;
         }
 
         for (int i = 0; i < W; i++) {
