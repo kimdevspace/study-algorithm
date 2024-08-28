@@ -26,7 +26,6 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
         T = Integer.parseInt(br.readLine());
@@ -50,9 +49,9 @@ public class Solution {
             }
 
             permutation(0);
-            sb.append("#").append(tc).append(" ").append(ans).append("\n");
+            System.out.println("#" + tc + " " + ans);
         }
-        System.out.println(sb);
+
 
     }
 
@@ -77,8 +76,9 @@ public class Solution {
             copyMap();
             return;
         }
+
         if (ans == 0) {
-        	return;
+            return;
         }
 
         for (int i = 0; i < W; i++) {
