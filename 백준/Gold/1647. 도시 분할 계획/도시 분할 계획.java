@@ -1,16 +1,27 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 
+    static class Edge implements Comparable<Edge> {
+        int w;
+        int cost;
+
+        public Edge(int w, int cost) {
+            this.w = w;
+            this.cost = cost;
+        }
+
+        @Override
+        public int compareTo(Edge o) {
+            return this.cost - o.cost;
+        }
+    }
+
     static int N, M, ans;
-    static int[][] graph;
-    static int[] p;
-    static ArrayList<Integer> edgeCost;
+    static List<Edge>[] adjList;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,57 +30,53 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        graph = new int[M + 1][3];
+        adjList = new ArrayList[N + 1];
+        for (int i = 0; i < N + 1; i++) {
+            adjList[i] = new ArrayList<>();
+        }
+
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < 3; j++) {
-                graph[i][j] = Integer.parseInt(st.nextToken());
-            }
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+            int cost = Integer.parseInt(st.nextToken());
+
+            adjList[u].add(new Edge(v, cost));
+            adjList[v].add(new Edge(u, cost));
         }
 
-        edgeCost = new ArrayList<>();
-        Arrays.sort(graph, (o1, o2) -> o1[2] - o2[2]);
-        makeSet();
-        kruskal();
-
-        ans = 0;
-        for (int i = 0; i < edgeCost.size() - 1; i++) {
-            ans += edgeCost.get(i);
-        }
+        ans = prim(1);
         System.out.println(ans);
     }
 
-    private static void makeSet() {
-        p = new int[N + 1];
-        for (int i = 0; i < N + 1; i++) {
-            p[i] = i;
-        }
-    }
+    private static int prim(int start) {
+        boolean[] visit = new boolean[N + 1];
+        PriorityQueue<Edge> pq = new PriorityQueue<>();
+        pq.offer(new Edge(start, 0));
 
-    private static int find(int x) {
-        if (p[x] == x) return x;
-        return p[x] = find(p[x]);
-    }
+        int max = 0;
+        int total = 0;
 
-    private static void union(int x, int y) {
-        int rootX = find(x);
-        int rootY = find(y);
+        while (!pq.isEmpty()) {
+            Edge edge = pq.poll();
+            int cur = edge.w;
+            int cost = edge.cost;
 
-        if (rootX == rootY) return;
+            if (visit[cur]) continue;
 
-        if (rootX < rootY) {
-            p[rootY] = rootX;
-        }else {
-            p[rootX] = rootY;
-        }
-    }
+            visit[cur] = true;
+            total += cost;
+            if (cost > max) {
+                max = cost;
+            }
 
-    private static void kruskal() {
-        for (int i = 0; i < graph.length; i++) {
-            if (find(graph[i][0]) != find(graph[i][1])) {
-                edgeCost.add(graph[i][2]);
-                union(find(graph[i][0]), find(graph[i][1]));
+            for (Edge e : adjList[cur]) {
+                if (!visit[e.w]) {
+                    pq.offer(e);
+                }
             }
         }
+
+        return total - max;
     }
 }
