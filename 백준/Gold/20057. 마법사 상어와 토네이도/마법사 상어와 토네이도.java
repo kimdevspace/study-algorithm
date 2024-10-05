@@ -78,20 +78,8 @@ public class Main {
     }
 
     private static void spread(int r, int c, int dir) {
-        /*
-        int[][] tmpMap = new int[N][N];
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (i == r && j ==c ) continue;
-                tmpMap[i][j] = map[i][j];
-            }
-        }
-         */
-
         int sand = map[r][c];
         int totalSpread = 0;
-
 
         for (int i = 0; i < 9; i++) {
             int nr = r + dr[dir][i];
@@ -113,31 +101,10 @@ public class Main {
         }else {
             ans += remainingSand;
         }
-
-        //print(tmpMap);
-        //System.out.println();
-        //copyMap(tmpMap);
     }
 
     private static boolean isRange(int nr, int nc) {
         if (0 <= nr && nr < N && 0 <= nc && nc < N) return true;
         return false;
-    }
-
-    private static void copyMap(int[][] tmpMap) {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                map[i][j] = tmpMap[i][j];
-            }
-        }
-    }
-
-    private static void print(int[][] arr) {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
     }
 }
