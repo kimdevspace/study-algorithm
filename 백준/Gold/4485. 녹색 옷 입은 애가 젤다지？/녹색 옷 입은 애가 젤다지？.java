@@ -17,15 +17,6 @@ public class Main {
             this.c = c;
             this.cost = cost;
         }
-
-        @Override
-        public String toString() {
-            return "Rupee{" +
-                    "r=" + r +
-                    ", c=" + c +
-                    ", cost=" + cost +
-                    '}';
-        }
     }
 
     static int N;
@@ -52,7 +43,6 @@ public class Main {
                     map[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
-
             ans = move(0, 0, map[0][0]);
             sb.append("Problem").append(" ").append(idx + ":").append(" ").append(ans).append("\n");
             idx++;
@@ -69,12 +59,10 @@ public class Main {
         for (int i = 0; i < N; i++) {
             Arrays.fill(moves[i], Integer.MAX_VALUE);
         }
-
         moves[0][0] = map[0][0];
 
         while (!pq.isEmpty()) {
             Rupee rupee = pq.poll();
-            //System.out.println(rupee);
             r = rupee.r;
             c = rupee.c;
             cost = rupee.cost;
@@ -93,8 +81,6 @@ public class Main {
                 }
             }
         }
-
         return moves[N - 1][N - 1];
-
     }
 }
