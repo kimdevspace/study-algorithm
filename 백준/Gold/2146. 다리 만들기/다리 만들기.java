@@ -15,15 +15,6 @@ public class Main {
             this.c = c;
             this.length = length;
         }
-
-        @Override
-        public String toString() {
-            return "Point{" +
-                    "r=" + r +
-                    ", c=" + c +
-                    ", length=" + length +
-                    '}';
-        }
     }
 
     static int N;
@@ -46,7 +37,6 @@ public class Main {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
         // 섬 번호 부여
         int num = numbering();
         // 섬 번호당 좌표 리스트로 관리
@@ -56,17 +46,13 @@ public class Main {
         for (int i = 1; i < island.length; i++) {
             for (int j = 0; j < island[i].size(); j++) {
                 Point point = island[i].get(j);
-                //System.out.println(point+", 섬번호:" + i);
                 int r = point.r;
                 int c = point.c;
-                //System.out.println(r+","+c);
                 connectBridge(r, c, i);
 
             }
         }
-
         System.out.println(ans);
-        //print();
     }
 
     private static int numbering() {
@@ -79,7 +65,6 @@ public class Main {
                 }
             }
         }
-
         return number;
     }
 
@@ -132,33 +117,22 @@ public class Main {
             r = p.r;
             c = p.c;
             int bridgeLength = p.length;
-
+            
             if (map[r][c] != 0 && map[r][c] != currentNumber) {
-
                 ans = Math.min(ans, bridgeLength - 1);
                 return;
             }
+            
             for (int i = 0; i < 4; i++) {
                 int nr = r + dr[i];
                 int nc = c + dc[i];
+                
                 if (0 > nr || nr >= N || 0 > nc || nc >= N || visit[nr][nc]) continue;
                 if (map[nr][nc] == currentNumber) continue;
 
                 visit[nr][nc] = true;
                 q.offer(new Point(nr, nc, bridgeLength + 1));
-
-
             }
-        }
-
-    }
-
-    private static void print() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                System.out.print(map[i][j] + " ");
-            }
-            System.out.println();
         }
     }
 }
