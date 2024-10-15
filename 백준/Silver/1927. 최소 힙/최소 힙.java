@@ -1,23 +1,28 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.PriorityQueue;
-import java.util.Scanner;
+
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine());
         PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> o1 - o2);
 
         for (int i = 0; i < N; i++) {
-            int value = sc.nextInt();
+            int value = Integer.parseInt(br.readLine());
             if (value == 0) {
                 if (pq.isEmpty()) {
-                    System.out.println(0);
+                    sb.append(0).append("\n");
                 } else {
-                    System.out.println(pq.poll());
+                    sb.append(pq.poll()).append("\n");
                 }
             } else if (value > 0) {
                 pq.offer(value);
             }
         }
+        System.out.println(sb);
     }
 }
