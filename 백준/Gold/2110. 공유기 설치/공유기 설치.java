@@ -25,15 +25,15 @@ public class Main {
         while (left <= right) {
             int mid = (left + right) / 2;
 
-            int previousDistance = home[0];
             int count = 1;
+            int previousDistance = home[0];
 
             for (int i = 1; i < home.length; i++) {
-                int currentDistance = home[i] - previousDistance;
+                int distance = home[i] - previousDistance;
 
-                if (currentDistance >= mid) {
-                    count++;
+                if (distance >= mid) {
                     previousDistance = home[i];
+                    count++;
                 }
             }
 
