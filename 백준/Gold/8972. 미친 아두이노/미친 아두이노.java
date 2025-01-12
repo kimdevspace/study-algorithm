@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -67,11 +66,9 @@ public class Main {
             MyArduino myArduino = findMyArduino();
             /**
              * 여기서 시뮬 들어가야 함
-             * 1. 종수 아두이노는 number에 따라 이동
-             * 2. 미친 아두이노는 종수 아두이노랑 가까워 지는 방향으로 이동
+             * 1. 종수 아두이노는 number에 따라 이동 (미친아두이노 만나면 펑)
+             * 2. 미친 아두이노는 종수 아두이노랑 가까워 지는 방향으로 이동 (종수아두이노 만나면 평)
              * 3. 이동 후 아두이노가 뭉쳐 있는곳 확인.
-             *    - 뭉쳐있는 곳에서 종수 아두이노가 있으면 GG
-             *    - 없으면 미친아두이노 삭제
              */
             cnt++;
             chk = simulation(number, myArduino);
@@ -112,6 +109,7 @@ public class Main {
                 return false; //종수 아두이노가 미친 아두이노로 가면 펑!
             }
         }
+
         tmpBoard[nr][nc].add('I');
 
         // 2. 미친 아두이노 이동
@@ -187,13 +185,4 @@ public class Main {
             System.out.println();
         }
     }
-
-//    private static void print() {
-//        for (int i = 0; i < R; i++) {
-//            for (int j = 0; j < C; j++) {
-//                System.out.print(tmpBoard[i][j]);
-//            }
-//            System.out.println();
-//        }
-//    }
 }
