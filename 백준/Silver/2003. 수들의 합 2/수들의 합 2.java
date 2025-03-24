@@ -4,52 +4,32 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int[] arr;
-	static int n;
-	static int m;
-	
-    public static void main(String[] args) throws IOException{
-    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    	
-    	StringTokenizer st = new StringTokenizer(br.readLine());
-    	
-    	n = Integer.parseInt(st.nextToken());
-    	m = Integer.parseInt(st.nextToken());
-    	arr = new int[n];
-    	
-    	st = new StringTokenizer(br.readLine());
-    	for(int i = 0; i < n; i++) {
-    		arr[i] = Integer.parseInt(st.nextToken());
-    	}
 
-    	System.out.println(twoPointer());
-    }
-    
-    public static int twoPointer() {
-    	int left = 0; 
-    	int right = 0;
-    	int sum = 0;
-    	int count = 0;
-    	
-    	while (true) {
-    		
-    		// 1 + 3. L ~ R 까지의 부분배열의 합이 M 보다 크거나 같으면 L + 1
-    		if(sum >= m) {
-    			sum -= arr[left++];
-    		}
-    		// 종료 조건 (right이 마지막 범위를 넘어갔을 경우)
-    		else if(right == n) {
-    			break;
-    		}
-    		// 2. L ~ R 까지의 부분배열의 합이 M 보다 작으면 R + 1
-    		else if(sum < m) {
-    			sum += arr[right++];
-    		}
-    		// 3.L ~ R 까지의 부분배열의 합이 M 이면 결과 카운트 + 1
-    		if(sum == m){
-    			count++;
-    		}
-    	}	
-    	return count;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        int[] A = new int[N];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            A[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int left = 0, right = 0, sum = 0, count = 0;
+
+        while (right < N || sum >= M) {  // 종료 조건 수정
+            if (sum < M && right < N) {  // 오른쪽 포인터 확장
+                sum += A[right++];
+            } else {  // 왼쪽 포인터 이동
+                sum -= A[left++];
+            }
+
+            if (sum == M) count++;  // sum이 M과 같아지는 순간 체크
+        }
+
+        System.out.println(count);
     }
 }
