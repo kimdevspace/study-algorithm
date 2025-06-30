@@ -11,28 +11,30 @@ public class Main {
 
         for (int i = 0; i < N; i++) {
             String str = br.readLine();
-            boolean[] checker = new boolean[26];
-            int prev = 0;
-
-            boolean check = false;
-            for (int j = 0; j < str.length(); j++) {
-                char c = str.charAt(j);
-
-                if (prev != c) {
-                    if (checker[c - 'a']) {
-                        check = false;
-                        break;
-                    }
-                    else if (!checker[c - 'a']) {
-                        checker[c - 'a'] = true;
-                        check = true;
-                        prev = c;
-                    }
-                }
-            }
-            if (check) cnt++;
+            if (check(str)) cnt++;
         }
 
         System.out.println(cnt);
+    }
+
+    private static boolean check(String str) {
+        boolean[] checker = new boolean[26];
+        int prev = 0;
+
+        for (int j = 0; j < str.length(); j++) {
+            char c = str.charAt(j);
+
+            if (prev != c) {
+                if (checker[c - 'a']) {
+                    return false;
+                }
+                else if (!checker[c - 'a']) {
+                    checker[c - 'a'] = true;
+                    prev = c;
+                }
+            }
+        }
+
+        return true;
     }
 }
