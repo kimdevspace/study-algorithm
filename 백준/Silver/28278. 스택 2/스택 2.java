@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -42,6 +40,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
@@ -57,14 +56,17 @@ public class Main {
                 int X = Integer.parseInt(st.nextToken());
                 stack.add(X);
             } else if (command == 2) {
-                System.out.println(stack.pop());
+                bw.write(stack.pop() + "\n");
             } else if (command == 3) {
-                System.out.println(stack.length());
+                bw.write(stack.length() + "\n");
             } else if (command == 4) {
-                System.out.println(stack.isEmpty());
+                bw.write(stack.isEmpty() + "\n");
             } else {
-                System.out.println(stack.top());
+                bw.write(stack.top() + "\n");
             }
         }
+
+        bw.flush();
+        bw.close();
     }
 }
