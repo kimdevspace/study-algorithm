@@ -8,40 +8,35 @@ import java.util.StringTokenizer;
 public class Main {
 
     static class Stack {
-        List<Integer> list;
+        int[] arr;
+        int top;
 
         Stack(int size) {
-            list = new ArrayList<>(size);
+            arr = new int[size];
+            top = -1;
         }
 
         public void add(int X) {
-            list.add(X);
+            arr[++top] = X;
         }
 
         public int pop() {
-            int maxSize = list.size() - 1;
-
-            if (!list.isEmpty()) {
-                return list.remove(maxSize);
-            } else {
-                return -1;
-            }
+            if (top == -1) return -1;
+            else return arr[top--];
         }
 
         public int length() {
-            return list.size();
+            return top + 1;
         }
 
         public int isEmpty() {
-            if (list.isEmpty()) return 1;
+            if (top == -1) return 1;
             else return 0;
         }
 
         public int top() {
-            int maxSize = list.size() - 1;
-
-            if (!list.isEmpty()) return list.get(maxSize);
-            else return -1;
+            if (isEmpty() == 1) return - 1;
+            else return arr[top];
         }
     }
 
