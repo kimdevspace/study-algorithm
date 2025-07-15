@@ -40,7 +40,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
@@ -56,17 +56,16 @@ public class Main {
                 int X = Integer.parseInt(st.nextToken());
                 stack.add(X);
             } else if (command == 2) {
-                bw.write(stack.pop() + "\n");
+                sb.append(stack.pop()).append("\n");
             } else if (command == 3) {
-                bw.write(stack.length() + "\n");
+                sb.append(stack.length()).append("\n");
             } else if (command == 4) {
-                bw.write(stack.isEmpty() + "\n");
+                sb.append(stack.isEmpty()).append("\n");
             } else {
-                bw.write(stack.top() + "\n");
+                sb.append(stack.top()).append("\n");
             }
         }
 
-        bw.flush();
-        bw.close();
+        System.out.println(sb);
     }
 }
