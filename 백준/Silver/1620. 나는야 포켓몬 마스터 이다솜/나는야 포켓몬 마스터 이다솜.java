@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
@@ -28,10 +29,12 @@ public class Main {
             String input = br.readLine();
             try {
                 int key = Integer.parseInt(input);
-                System.out.println(numberKeyMap.get(key));
+                sb.append(numberKeyMap.get(key)).append("\n");
             } catch (NumberFormatException e) {
-                System.out.println(stringKeyMap.get(input));
+                sb.append(stringKeyMap.get(input)).append("\n");
             }
         }
+
+        System.out.println(sb);
     }
 }
