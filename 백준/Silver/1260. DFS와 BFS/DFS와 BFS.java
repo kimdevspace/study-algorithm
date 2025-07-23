@@ -13,43 +13,40 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken()); // 정점 수
-        M = Integer.parseInt(st.nextToken()); // 간선 수
-        V = Integer.parseInt(st.nextToken()); // 탐색 시작 지점
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        V = Integer.parseInt(st.nextToken());
 
-        // 그래프 초기화
         graph = new ArrayList[N + 1];
-        for (int i = 0; i < N + 1; i++) {
+        for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
 
-        // 연결 입력하기
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            int u = Integer.parseInt(st.nextToken());
-            int v = Integer.parseInt(st.nextToken());
 
-            graph[u].add(v);
-            graph[v].add(u);
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
+            graph[a].add(b);
+            graph[b].add(a);
         }
-        
-        for (int i = 1; i < N + 1; i++) {
+
+        for (int i = 0; i < graph.length; i++) {
             Collections.sort(graph[i]);
         }
-
-        // DFS 탐색 시작
+        
         visited = new boolean[N + 1];
         dfs(V);
         System.out.println();
-        // BFS 탐색 시작
         visited = new boolean[N + 1];
         bfs(V);
     }
 
-    // DFS
     private static void dfs(int v) {
         visited[v] = true;
         System.out.print(v + " ");
+
         for (int i : graph[v]) {
             if (!visited[i]) {
                 dfs(i);
@@ -57,19 +54,19 @@ public class Main {
         }
     }
 
-    // BFS
     private static void bfs(int v) {
-        Queue<Integer> q = new LinkedList<>();
-        visited[v] = true;
+        Queue<Integer> q = new ArrayDeque<>();
         q.offer(v);
+        visited[v] = true;
 
         while (!q.isEmpty()) {
-            v = q.poll();
-            System.out.print(v + " ");
-            for (int i : graph[v]) {
+            int current = q.poll();
+            System.out.print(current + " ");
+
+            for (int i : graph[current]) {
                 if (!visited[i]) {
-                    q.offer(i);
                     visited[i] = true;
+                    q.offer(i);
                 }
             }
         }
