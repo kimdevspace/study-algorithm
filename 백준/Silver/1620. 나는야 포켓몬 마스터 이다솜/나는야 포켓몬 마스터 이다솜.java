@@ -14,22 +14,23 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        Map<Integer, String> pokemonDict1 = new HashMap<>();
-        Map<String, Integer> pokemonDict2 = new HashMap<>();
+        Map<String, Integer> stringKeyMap = new HashMap<>();
+        Map<Integer, String> numberKeyMap = new HashMap<>();
 
         for (int i = 1; i <= N; i++) {
             String pokemon = br.readLine();
-            pokemonDict1.put(i, pokemon);
-            pokemonDict2.put(pokemon, i);
+
+            stringKeyMap.put(pokemon, i);
+            numberKeyMap.put(i, pokemon);
         }
 
         for (int i = 0; i < M; i++) {
             String input = br.readLine();
-            char numCheck = input.charAt(0);
-            if (49 <= numCheck && numCheck <= 57) {
-                System.out.println(pokemonDict1.get(Integer.parseInt(input)));
-            } else {
-                System.out.println(pokemonDict2.get(input));
+            try {
+                int key = Integer.parseInt(input);
+                System.out.println(numberKeyMap.get(key));
+            } catch (NumberFormatException e) {
+                System.out.println(stringKeyMap.get(input));
             }
         }
     }
