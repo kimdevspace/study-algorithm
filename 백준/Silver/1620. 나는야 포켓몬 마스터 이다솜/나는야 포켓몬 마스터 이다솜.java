@@ -34,7 +34,7 @@ public class Main {
                 sb.append(stringKeyMap.get(input)).append("\n");
             }
         }
-
+        br.close();
         System.out.println(sb);
     }
 }
