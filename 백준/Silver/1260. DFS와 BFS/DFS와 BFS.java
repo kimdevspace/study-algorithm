@@ -8,6 +8,7 @@ public class Main {
     static int N, M, V;
     static List<Integer>[] graph;
     static boolean[] visited;
+    static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,13 +19,12 @@ public class Main {
         V = Integer.parseInt(st.nextToken());
 
         graph = new ArrayList[N + 1];
-        for (int i = 0; i < graph.length; i++) {
+        for (int i = 0; i < N + 1; i++) {
             graph[i] = new ArrayList<>();
         }
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
@@ -32,20 +32,25 @@ public class Main {
             graph[b].add(a);
         }
 
-        for (int i = 0; i < graph.length; i++) {
+        for (int i = 1; i <= N; i++) {
             Collections.sort(graph[i]);
         }
-        
+
         visited = new boolean[N + 1];
+        sb = new StringBuilder();
         dfs(V);
-        System.out.println();
+
+        sb.append("\n");
+
         visited = new boolean[N + 1];
         bfs(V);
+
+        System.out.println(sb);
     }
 
     private static void dfs(int v) {
         visited[v] = true;
-        System.out.print(v + " ");
+        sb.append(v + " ");
 
         for (int i : graph[v]) {
             if (!visited[i]) {
@@ -61,12 +66,13 @@ public class Main {
 
         while (!q.isEmpty()) {
             int current = q.poll();
-            System.out.print(current + " ");
+
+            sb.append(current + " ");
 
             for (int i : graph[current]) {
                 if (!visited[i]) {
-                    visited[i] = true;
                     q.offer(i);
+                    visited[i] = true;
                 }
             }
         }
