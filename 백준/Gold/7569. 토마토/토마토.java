@@ -19,7 +19,6 @@ public class Main {
 
     static int N, M, H;
     static int[][][] box;
-    static int[][][] day;
     static int[] dr = {-1, 1, 0, 0, 0, 0};
     static int[] dc = {0, 0, -1, 1, 0, 0};
     static int[] dh = {0, 0, 0, 0, -1, 1};
@@ -34,7 +33,6 @@ public class Main {
         H = Integer.parseInt(st.nextToken());
 
         box = new int[H][N][M];
-        day = new int[H][N][M];
         q = new ArrayDeque<>();
 
         boolean chkZero = true;
@@ -57,7 +55,7 @@ public class Main {
         if (chkZero) {
             System.out.println(0);
         } else {
-            int ans = bfs();
+            int ans = bfs() - 1;
             if (checkBox()) {
                 System.out.println(ans);
             } else {
@@ -80,11 +78,10 @@ public class Main {
                 int nr = cur_r + dr[i];
                 int nc = cur_c + dc[i];
 
-                if (0 <= nh && nh < H && 0 <= nr && nr < N && 0 <= nc && nc < M && box[nh][nr][nc] == 0 && day[nh][nr][nc] == 0) {
+                if (0 <= nh && nh < H && 0 <= nr && nr < N && 0 <= nc && nc < M && box[nh][nr][nc] == 0) {
                     q.offer(new Point(nh, nr, nc));
-                    box[nh][nr][nc] = 1;
-                    day[nh][nr][nc] = day[cur_h][cur_r][cur_c] + 1;
-                    max = Math.max(max, day[nh][nr][nc]);
+                    box[nh][nr][nc] = box[cur_h][cur_r][cur_c] + 1;
+                    max = Math.max(max, box[nh][nr][nc]);
                 }
             }
         }
