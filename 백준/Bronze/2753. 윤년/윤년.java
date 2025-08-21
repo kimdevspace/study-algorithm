@@ -1,13 +1,15 @@
-import java.io.*;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        int a = Integer.parseInt(br.readLine());
+        int year = sc.nextInt();
 
-        if (a%4 == 0 && (a%100 != 0 || a%400 == 0))
-            System.out.println("1");
-        else
-            System.out.println("0");
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            System.out.println(1);
+        } else {
+            System.out.println(0);
+        }
     }
 }
