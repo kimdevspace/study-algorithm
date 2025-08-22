@@ -1,25 +1,29 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < T; i++) {
-            String str = sc.next();
-            int cnt = 0;
+        int T = Integer.parseInt(br.readLine());
+
+        for (int tc = 0; tc < T; tc++) {
+            String str = br.readLine();
             int sum = 0;
-            for (int j = 0; j < str.length(); j++) {
-                if (str.charAt(j) == 'O') {
-                    cnt++;
+            int partNumber = 0;
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == 'O') {
+                    partNumber++;
+                    sum += partNumber;
+                } else {
+                    partNumber = 0;
                 }
-                else {
-                    cnt = 0;
-                }
-                sum += cnt;
             }
-            System.out.println(sum);
+            sb.append(sum).append("\n");
         }
-        sc.close();
+
+        System.out.println(sb);
     }
 }
