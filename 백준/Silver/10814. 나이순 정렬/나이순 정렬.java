@@ -1,52 +1,49 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
 
-    static class UserInfo {
-        int number;
+    static class Member {
         int age;
         String name;
+        int order;
 
-        public UserInfo(int number, int age, String name) {
-            this.number = number;
+        public Member(int age, String name, int order) {
             this.age = age;
             this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return age + " " + name;
+            this.order = order;
         }
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        List<UserInfo> list = new ArrayList<>();
-        for (int i = 1; i <= N; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
+        Member[] members = new Member[N];
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
             int age = Integer.parseInt(st.nextToken());
             String name = st.nextToken();
-            list.add(new UserInfo(i, age, name));
+            members[i] = new Member(age, name, (i + 1));
         }
 
-        Collections.sort(list, new Comparator<UserInfo>() {
-            @Override
-            public int compare(UserInfo o1, UserInfo o2) {
-                if (o1.age != o2.age) {
-                    return Integer.compare(o1.age, o2.age);
-                } else {
-                    return Integer.compare(o1.number, o2.number);
-                }
+        Arrays.sort(members, (o1, o2) -> {
+            if (o1.age == o2.age) {
+                return o1.order - o2.order;
+            } else {
+                return o1.age - o2.age;
             }
         });
 
-        for (UserInfo userInfo : list) {
-            System.out.println(userInfo);
+        for (int i = 0; i < N; i++) {
+            sb.append(members[i].age).append(" ").append(members[i].name).append("\n");
         }
+
+        System.out.println(sb);
     }
 }
