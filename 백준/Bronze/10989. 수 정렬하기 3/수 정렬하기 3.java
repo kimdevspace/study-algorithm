@@ -8,41 +8,20 @@ public class Main {
          StringBuilder sb = new StringBuilder();
 
          int N = Integer.parseInt(br.readLine());
-         int max = 0;
-         int[] arr = new int[N];
+         int[] count = new int[10001];
 
          for (int i = 0; i < N; i++) {
-             arr[i] = Integer.parseInt(br.readLine());
-             max = Math.max(arr[i], max);
+             count[Integer.parseInt(br.readLine())]++;
          }
 
-         int[] result = countingSort(arr, max);
-
-         for (int i = 0; i < N; i++) {
-             sb.append(result[i]).append("\n");
+         for (int i = 1; i <= 10000; i++) {
+             while (count[i] > 0) {
+                 sb.append(i).append("\n");
+                 count[i]--;
+             }
          }
 
          System.out.println(sb);
-     }
-
-     static int[] countingSort(int[] arr, int k) {
-         int n = arr.length;
-         int[] count = new int[k + 1];
-         int[] result = new int[n];
-
-         for (int i = 0; i < n; i++) {
-             count[arr[i]]++;
-         }
-
-         for (int i = 1; i <= k; i++) {
-             count[i] += count[i - 1];
-         }
-
-         for (int i = n - 1; i >= 0; i--) {
-             result[count[arr[i]] - 1] = arr[i];
-             count[arr[i]]--;
-         }
-
-         return result;
+         br.close();
      }
 }
