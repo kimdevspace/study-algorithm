@@ -3,71 +3,46 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+     public static void main(String[] args) throws IOException {
+         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+         StringBuilder sb = new StringBuilder();
 
-    static int[] temp;
+         int N = Integer.parseInt(br.readLine());
+         int max = 0;
+         int[] arr = new int[N];
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+         for (int i = 0; i < N; i++) {
+             arr[i] = Integer.parseInt(br.readLine());
+             max = Math.max(arr[i], max);
+         }
 
-        int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-        temp = new int[N];
-        for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(br.readLine());
-        }
+         int[] result = countingSort(arr, max);
 
-        mergeSort(arr, 0, arr.length - 1);
+         for (int i = 0; i < N; i++) {
+             sb.append(result[i]).append("\n");
+         }
 
-        for (int i = 0; i < N; i++) {
-            sb.append(arr[i]).append("\n");
-        }
+         System.out.println(sb);
+     }
 
-        System.out.println(sb);
+     static int[] countingSort(int[] arr, int k) {
+         int n = arr.length;
+         int[] count = new int[k + 1];
+         int[] result = new int[n];
 
-    }
+         for (int i = 0; i < n; i++) {
+             count[arr[i]]++;
+         }
 
-    static void mergeSort(int[] arr, int left, int right) {
-        if (left >= right) {
-            return;
-        }
+         for (int i = 1; i <= k; i++) {
+             count[i] += count[i - 1];
+         }
 
-        int mid = (left + right) / 2;
+         for (int i = n - 1; i >= 0; i--) {
+             result[count[arr[i]] - 1] = arr[i];
+             count[arr[i]]--;
+         }
 
-        mergeSort(arr, left, mid);
-
-        mergeSort(arr, mid + 1, right);
-
-        merge(arr, left, mid, right);
-    }
-
-    static void merge(int[] arr, int left, int mid, int right) {
-        copy(arr, left, right);
-
-        int l = left;
-        int r = mid + 1;
-        int idx = left;
-
-        while (l <= mid && r <= right) {
-            if (temp[l] <= temp[r]) {
-                arr[idx++] = temp[l++];
-            } else {
-                arr[idx++] = temp[r++];
-            }
-        }
-
-        while (l <= mid) {
-            arr[idx++] = temp[l++];
-        }
-
-        while (r <= right) {
-            arr[idx++] = temp[r++];
-        }
-    }
-
-    static void copy(int[] arr, int left, int right) {
-        for (int i = left; i <= right; i++) {
-            temp[i] = arr[i];
-        }
-    }
+         return result;
+     }
 }
