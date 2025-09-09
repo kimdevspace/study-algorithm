@@ -14,7 +14,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        List<Integer> list = new ArrayList<>(5_000_000);
+        List<Integer> list = new ArrayList<>(5_000_001);
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
